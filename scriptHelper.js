@@ -53,7 +53,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
      copilot = document.querySelector("input[name=copilotName]");
      fuel = document.querySelector("input[name=fuelLevel]");
      cargo = document.querySelector("input[name=cargoMass]");
-    if (pilot.value === '' || copilot.value === '' || fuel.value === '' || cargo.value === ''){
+    if (validateInput(pilot.value) === 'Empty' || validateInput(copilot.value) === 'Empty' || validateInput(fuel.value) === 'Empty' || validateInput(cargo.value) === 'Empty'){
         alert('All fields required')
         
         }
