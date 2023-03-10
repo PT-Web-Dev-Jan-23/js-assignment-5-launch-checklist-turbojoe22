@@ -38,7 +38,7 @@ function validateInput(testInput) {
    }
    else if (isNaN(numInput)){
     //console.log('IS NAN')
-    return 'Not a Number' 
+    return "Not a Number" 
    }
    else {
     //console.log('ISNUM')
