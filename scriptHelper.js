@@ -34,8 +34,8 @@ function validateInput(testInput) {
    let numInput = Number(testInput);
    if(testInput === ""){
     //console.log("empty")
-    return "Empty"
-   } 
+    return 'Empty' 
+   }
    else if (isNaN(numInput)){
     //console.log('IS NAN')
     return 'Not a Number' 
