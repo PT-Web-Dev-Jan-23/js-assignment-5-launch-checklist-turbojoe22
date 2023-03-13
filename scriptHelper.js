@@ -49,31 +49,38 @@ function validateInput(testInput) {
 //
 //
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-     pilot = document.querySelector("input[name=pilotName]");
-     copilot = document.querySelector("input[name=copilotName]");
-     fuel = document.querySelector("input[name=fuelLevel]");
-     cargo = document.querySelector("input[name=cargoMass]");
-    if (validateInput(pilot.value) === 'Empty' || validateInput(copilot.value) === 'Empty' || validateInput(fuel.value) === 'Empty' || validateInput(cargo.value) === 'Empty'){
+  let fuelStatus = document.getElementById('fuelStatus')
+  let cargoStatus = document.getElementById("cargoStatus")
+  let pilotStatus = document.getElementById("pilotStatus")
+  let copilotStatus = document.getElementById("copilotStatus")
+
+    if (validateInput(pilot) === 'Empty' || validateInput(copilot) === 'Empty' || validateInput(fuelLevel) === 'Empty' || validateInput(cargoLevel) === 'Empty'){
         alert('All fields required')
         
         }
-    else if (validateInput(pilot.value) === "Is a Number" || validateInput(copilot.value) === "Is a Number" || validateInput(fuel.value) === "Not a Number" || validateInput(cargo.value) === "Not a Number"){
+    else if (validateInput(pilot) === "Is a Number" || validateInput(copilot) === "Is a Number" || validateInput(fuelLevel) === "Not a Number" || validateInput(cargoLevel) === "Not a Number"){
         alert("Enter valid information in each field")
     }
     else {
+        console.log('pilotStatus', pilotStatus)
         list.style.visibility = "visible"
-        pilotStatus.innerHTML = `Pilot ${pilot.value} is ready for launch`;
-        copilotStatus.innerHTML = `Co-Pilot ${copilot.value} is ready for launch`
+        pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
+        copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`
         
-        if (fuel.value < 10000){
+        if (fuelStatus < 10000){
             fuelStatus.innerHTML = "Fuel level too low for launch"
             launchStatus.innerHTML = "Shuttle not ready for launch"
-            launchStatus.style.color = 'red'
-        } else if (cargo.value > 10000){
+            launchStatus.style.color = 'rgb(199, 37, 78)'
+        } else if (cargoStatus > 10000){
             cargoStatus.innerHTML = "Cargo mass too high for launch"
             launchStatus.innerHTML = "Shuttle not ready for launch"
-            launchStatus.style.color = 'red'
-        } else if (cargo.value <= 10000 && fuel.value >= 10000){
+            launchStatus.style.color = 'rgb(199, 37, 78)'
+        } else if (fuelStatus < 10000 && cargoStatus > 10000) {
+            fuelStatus.innerHTML = "Fuel level too low for launch"
+            cargoStatus.innerHTML = "Cargo mass is low enough for launch"
+            launchStatus.innerHTML = "Shuttle not ready for launch"
+            launchStatus.style.color = 'rgb(199, 37, 78)'
+        } else if (cargoStatus <= 10000 && fuelStatus >= 10000){
             launchStatus.innerHTML = 'Shuttle is ready for launch'
             launchStatus.style.color = 'green'
             fuelStatus.innerHTML = 'Fuel level high enough for launch'
